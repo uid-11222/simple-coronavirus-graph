@@ -1,4 +1,12 @@
-const YEAR = new Date().getFullYear();
+const YEAR = 2020;
+
+const isLabeledIndex = (index, rows, labelDistance) => {
+    if (index < rows - 3) return index % labelDistance === 0;
+
+    if (index === rows - 3 && index % labelDistance > 2) return true;
+
+    return index === rows - 1; // index % labelDistance && index === rows - 3;
+};
 
 const getCtx = (width, height) => {
     const graph = document.createElement('canvas');
@@ -47,8 +55,8 @@ export default ({
     labelDistance = 4,
     msInDay = 24 * 3600 * 1000,
     name,
-    rowWidth = 35,
-    rowWidthPadding = 27,
+    rowWidth = 30,
+    rowWidthPadding = 22,
     textColor = '#222',
     topGraphPadding = 30,
     totalHeight = 900,
@@ -105,9 +113,10 @@ export default ({
     ctx.lineWidth = gridLineWidth;
 
     for (let i = 0; i < rows; i += 1) {
-        if (i % labelDistance === 0 || i === rows - 1) {
+        if (isLabeledIndex(i, rows, labelDistance)) {
             const left = i * rowWidth;
             const date = new Date(data[0].date.valueOf() + i * msInDay);
+
             ctx.fillText(getDateString(date), left, totalHeight + labelFontSize);
             ctx.moveTo(left, 0);
             ctx.lineTo(left, totalHeight);
@@ -116,6 +125,7 @@ export default ({
 
     for (let i = 0; i < heightLabelsCount; i += 1) {
         const height = Math.round(i * heightScale * heightLabelsStep);
+
         ctx.fillText(heightLabelsStep * i, totalWidth, totalHeight - height);
         ctx.moveTo(0, totalHeight - height);
         ctx.lineTo(totalWidth, totalHeight - height);

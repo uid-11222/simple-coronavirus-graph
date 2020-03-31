@@ -1,5 +1,7 @@
 # Simple coronavirus graph
 
+[![License MIT][license-image]](LICENSE)
+
 ## Install
 
 You need `node@13` on OS.
@@ -16,4 +18,14 @@ npm install
 npm start
 ```
 
-Then open `http://localhost:5000/` in browser.
+Then open http://localhost:5000/ in modern browser.
+
+Data source: https://www.gisaid.org/epiflu-applications/global-cases-covid-19/
+
+## License
+
+This is a training project.
+
+[MIT](LICENSE)
+
+[license-image]: https://img.shields.io/badge/license-MIT-blue.svg?longCache=true&style=flat-square 'The MIT License'

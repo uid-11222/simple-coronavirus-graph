@@ -1,43 +1,10 @@
-const YEAR = 2020;
-
-const isLabeledIndex = (index, rows, labelDistance) => {
-    if (index < rows - 3) return index % labelDistance === 0;
-
-    if (index === rows - 3 && index % labelDistance > 2) return true;
-
-    return index === rows - 1; // index % labelDistance && index === rows - 3;
-};
-
-const getCtx = (width, height) => {
-    const graph = document.createElement('canvas');
-
-    document.documentElement.append(graph);
-
-    graph.width = width;
-    graph.height = height;
-
-    return graph.getContext('2d');
-};
-
-const getDateString = date => {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(1 + date.getMonth()).padStart(2, '0');
-
-    return `${day}.${month}`;
-};
-
-const parseDataText = dataText =>
-    dataText
-        .trim()
-        .split('\n')
-        .map(line => {
-            const [rawDate, value] = line.split(/\s+/g);
-            const [day, month] = rawDate.split(/\./g);
-            const date = new Date(YEAR, parseInt(month, 10) - 1, day);
-
-            return { date, value: parseInt(value, 10) };
-        })
-        .sort((a, b) => (a.date > b.date ? 1 : -1));
+import {
+    isLabeledIndex,
+    getCtx,
+    getDateString,
+    getHeightLabelStep,
+    parseDataText,
+} from './utils.js';
 
 export default ({
     barColor = 'rgba(250, 0, 0, 0.3)',
@@ -48,10 +15,9 @@ export default ({
     gridLineWidth = 1,
     headerColor = 'rgba(0, 0, 100, 0.1)',
     headerFontSize = 120,
-    heightLabelsStep = 10000,
     labelBgColor = 'rgba(0, 300, 300, 0.3)',
     labelFontSize = 14,
-    labelMargin = 50,
+    labelMarginX = 70,
     labelDistance = 4,
     msInDay = 24 * 3600 * 1000,
     name,
@@ -70,10 +36,12 @@ export default ({
     const rowHalf = Math.round((rowWidth - rowWidthPadding) / 2);
 
     const maxValue = Math.max(...data.map(item => item.value));
+    const heightLabelsStep = getHeightLabelStep(maxValue);
     const heightLabelsCount = 1 + Math.floor(maxValue / heightLabelsStep);
     const heightScale = (totalHeight - topGraphPadding) / maxValue;
+    const labelMarginY = labelFontSize * 2;
 
-    const ctx = getCtx(totalWidth + labelMargin, totalHeight + labelMargin);
+    const ctx = getCtx(totalWidth + labelMarginX, totalHeight + labelMarginY);
 
     /**
      * Background.
@@ -81,8 +49,16 @@ export default ({
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, totalWidth, totalHeight);
     ctx.fillStyle = labelBgColor;
-    ctx.fillRect(0, totalHeight, totalWidth + labelMargin, labelMargin);
-    ctx.fillRect(totalWidth, 0, labelMargin, totalHeight);
+    ctx.fillRect(0, totalHeight, totalWidth + labelMarginX, labelMarginY);
+    ctx.fillRect(totalWidth, 0, labelMarginX, totalHeight);
+
+    /**
+     * Header.
+     */
+    ctx.fillStyle = headerColor;
+    ctx.font = `${headerFontSize}px serif`;
+
+    ctx.fillText(name, headerFontSize, headerFontSize);
 
     /**
      * Graph.
@@ -119,25 +95,17 @@ export default ({
 
             ctx.fillText(getDateString(date), left, totalHeight + labelFontSize);
             ctx.moveTo(left, 0);
-            ctx.lineTo(left, totalHeight);
+            ctx.lineTo(left, totalHeight + 4);
         }
     }
 
     for (let i = 0; i < heightLabelsCount; i += 1) {
         const height = Math.round(i * heightScale * heightLabelsStep);
 
-        ctx.fillText(heightLabelsStep * i, totalWidth, totalHeight - height);
+        ctx.fillText((heightLabelsStep * i).toLocaleString('en'), totalWidth, totalHeight - height);
         ctx.moveTo(0, totalHeight - height);
         ctx.lineTo(totalWidth, totalHeight - height);
     }
 
     ctx.stroke();
-
-    /**
-     * Header.
-     */
-    ctx.fillStyle = headerColor;
-    ctx.font = `${headerFontSize}px serif`;
-
-    ctx.fillText(name, headerFontSize, headerFontSize);
 };

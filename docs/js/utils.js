@@ -9,7 +9,7 @@ export const isLabeledIndex = (index, rows, labelDistance) => {
 export const getCtx = (width, height) => {
     const graph = document.createElement('canvas');
 
-    document.documentElement.append(graph);
+    document.body.append(graph);
 
     graph.width = width;
     graph.height = height;

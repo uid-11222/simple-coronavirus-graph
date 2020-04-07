@@ -20,7 +20,7 @@ npm start
 
 Then open [localhost:5000](http://localhost:5000/) in modern browser.
 
-Data source: [COVID-19 Global Cases provided by Johns Hopkins University](https://www.gisaid.org/epiflu-applications/global-cases-covid-19/)
+Data source: [COVID-19 Global Cases provided by Johns Hopkins University](https://www.gisaid.org/epiflu-applications/global-cases-covid-19/).
 
 ## License
 

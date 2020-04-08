@@ -1,4 +1,5 @@
 export const China = `
+07.04 82718
 06.04 82665
 05.04 82574
 04.04 82534
@@ -42,6 +43,7 @@ export const China = `
 `;
 
 export const Italy = `
+07.04 132547
 06.04 128948
 05.04 124632
 03.04 119827
@@ -68,6 +70,7 @@ export const Italy = `
 `;
 
 export const Moscow = `
+07.04 5181
 06.04 4484
 05.04 3893
 04.04 3357
@@ -107,6 +110,7 @@ export const Moscow = `
 `;
 
 export const SouthKorea = `
+07.04 10331
 06.04 10284
 05.04 10237
 04.04 10156
@@ -145,6 +149,7 @@ export const SouthKorea = `
 `;
 
 export const USA = `
+07.04 378289
 06.04 337646
 05.04 312245
 04.04 278942

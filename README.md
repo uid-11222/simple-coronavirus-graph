@@ -2,6 +2,8 @@
 
 [![License MIT][license-image]](LICENSE)
 
+[https://uid-11222.github.io/simple-coronavirus-graph/](https://uid-11222.github.io/simple-coronavirus-graph/)
+
 ## Install
 
 You need `node@13` on OS.

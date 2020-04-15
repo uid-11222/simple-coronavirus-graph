@@ -1,4 +1,5 @@
 export const China = `
+14.04 83306
 13.04 83213
 12.04 83134
 11.04 83014
@@ -49,6 +50,7 @@ export const China = `
 `;
 
 export const Italy = `
+14.04 162488
 13.04 159516
 12.04 156363
 11.04 147577
@@ -82,6 +84,7 @@ export const Italy = `
 `;
 
 export const Moscow = `
+14.04 13002
 13.04 11513
 12.04 10158
 11.04 8852
@@ -128,6 +131,7 @@ export const Moscow = `
 `;
 
 export const SouthKorea = `
+14.04 10564
 13.04 10537
 12.04 10512
 11.04 10480
@@ -173,6 +177,7 @@ export const SouthKorea = `
 `;
 
 export const USA = `
+14.04 589048
 13.04 568176
 12.04 547681
 11.04 501701

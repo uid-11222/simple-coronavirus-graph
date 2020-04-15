@@ -2,14 +2,14 @@
 
 [![License MIT][license-image]](LICENSE)
 
-[https://uid-11222.github.io/simple-coronavirus-graph/](https://uid-11222.github.io/simple-coronavirus-graph/)
+[https://uid11.github.io/simple-coronavirus-graph/](https://uid11.github.io/simple-coronavirus-graph/)
 
 ## Install
 
 You need `node@13` on OS.
 
 ```sh
-git clone https://github.com/uid-11222/simple-coronavirus-graph.git
+git clone https://github.com/uid11/simple-coronavirus-graph.git
 cd simple-coronavirus-graph
 npm install
 ```

@@ -3,9 +3,9 @@
     "version": "0.0.1",
     "description": "Simple visual graph of coronavirus in time",
     "bugs": {
-        "url": "https://github.com/uid-11222/simple-coronavirus-graph/issues"
+        "url": "https://github.com/uid11/simple-coronavirus-graph/issues"
     },
-    "homepage": "https://github.com/uid-11222/simple-coronavirus-graph",
+    "homepage": "https://github.com/uid11/simple-coronavirus-graph",
     "main": "src/index.js",
     "scripts": {
         "lint": "eslint docs src",
@@ -18,7 +18,7 @@
         "covid-19",
         "graph"
     ],
-    "author": "uid-11222",
+    "author": "uid11",
     "license": "MIT",
     "dependencies": {
         "express": "^4.17.1"
@@ -40,6 +40,6 @@
     "type": "module",
     "repository": {
         "type": "git",
-        "url": "https://github.com/uid-11222/simple-coronavirus-graph"
+        "url": "https://github.com/uid11/simple-coronavirus-graph"
     }
 }

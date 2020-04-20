@@ -8,14 +8,14 @@ import {
 
 export default ({
     barColor = 'rgba(250, 0, 0, 0.3)',
-    bgColor = 'rgba(0, 0, 100, 0.1)',
+    bgColor = 'white',
     dataText,
     graphLineWidth = 2,
     gridColor = '#999',
     gridLineWidth = 1,
     headerColor = 'rgba(0, 0, 100, 0.1)',
     headerFontSize = 120,
-    labelBgColor = 'rgba(0, 300, 300, 0.3)',
+    labelBgColor = '#DDD',
     labelFontSize = 14,
     labelMarginX = 70,
     labelDistance = 4,
@@ -46,11 +46,20 @@ export default ({
     /**
      * Background.
      */
+    ctx.fillStyle = 'black';
+    ctx.moveTo(0, 0);
+    ctx.lineWidth = 1;
+    ctx.lineTo(totalWidth + labelMarginX, 0);
+    ctx.lineTo(totalWidth + labelMarginX, totalHeight + labelMarginY);
+    ctx.lineTo(0, totalHeight + labelMarginY);
+    ctx.lineTo(0, 0);
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, totalWidth, totalHeight);
     ctx.fillStyle = labelBgColor;
     ctx.fillRect(0, totalHeight, totalWidth + labelMarginX, labelMarginY);
     ctx.fillRect(totalWidth, 0, labelMarginX, totalHeight);
+
+    ctx.stroke();
 
     /**
      * Header.

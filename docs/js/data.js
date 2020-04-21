@@ -94,6 +94,7 @@ export const Italy = `
 `;
 
 export const Moscow = `
+21.04 29433
 20.04 26350
 19.04 24324
 18.04 20754
@@ -148,6 +149,7 @@ export const Moscow = `
 
 /* eslint-disable-next-line camelcase */
 export const Moscow_Oblast = `
+21.04 5959
 20.04 5241
 19.04 4663
 18.04 3954
@@ -196,7 +198,8 @@ export const Moscow_Oblast = `
 
 /* eslint-disable-next-line camelcase */
 export const Saint_Petersburg = `
-20.40 1846
+21.04 1973
+20.04 1846
 19.04 1760
 18.04 1646
 17.04 1507
@@ -234,7 +237,7 @@ export const Saint_Petersburg = `
 
 /* eslint-disable-next-line camelcase */
 export const South_Korea = `
-20.40 10674
+20.04 10674
 19.04 10661
 18.04 10653
 17.04 10635

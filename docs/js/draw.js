@@ -17,7 +17,7 @@ export default ({
     headerFontSize = 120,
     labelBgColor = '#DDD',
     labelFontSize = 14,
-    labelMarginX = 70,
+    labelMarginX = 80,
     labelDistance = 4,
     msInDay = 24 * 3600 * 1000,
     name,

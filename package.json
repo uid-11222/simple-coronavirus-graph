@@ -24,7 +24,7 @@
         "express": "^4.17.1"
     },
     "engines": {
-        "node": ">=13"
+        "node": ">=14"
     },
     "devDependencies": {
         "@typescript-eslint/parser": "^2.30.0",

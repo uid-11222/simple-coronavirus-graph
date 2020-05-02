@@ -1,4 +1,5 @@
 export const China = `
+02.05 83959
 01.05 83958
 30.04 83944
 29.04 83940
@@ -65,7 +66,7 @@ export const China = `
 `;
 
 export const Italy = `
-01.05 207428
+02.05 207428
 30.04 205463
 29.04 203591
 28.04 201505
@@ -112,6 +113,7 @@ export const Italy = `
 `;
 
 export const Moscow = `
+02.05 62658
 01.05 57300
 30.04 53739
 29.04 50646
@@ -177,6 +179,7 @@ export const Moscow = `
 
 /* eslint-disable-next-line camelcase */
 export const Moscow_Oblast = `
+02.05 13314
 01.05 12507
 30.04 11710
 29.04 10917
@@ -236,6 +239,7 @@ export const Moscow_Oblast = `
 
 /* eslint-disable-next-line camelcase */
 export const Saint_Petersburg = `
+02.05 4734
 01.05 4411
 30.04 4062
 29.04 3726
@@ -285,6 +289,7 @@ export const Saint_Petersburg = `
 
 /* eslint-disable-next-line camelcase */
 export const South_Korea = `
+02.05 10780
 01.05 10774
 30.04 10765
 29.04 10761
@@ -347,6 +352,7 @@ export const South_Korea = `
 `;
 
 export const USA = `
+02.05 1107815
 01.05 1091038
 30.04 1056402
 29.04 1023304

@@ -1,4 +1,5 @@
 export const China = `
+16.05 84038
 12.05 84011
 11.05 84010
 10.05 83994
@@ -74,6 +75,9 @@ export const China = `
 `;
 
 export const Italy = `
+15.05 223885
+14.05 223096
+13.05 222104
 12.05 221216
 11.05 219814
 10.05 218268
@@ -335,6 +339,10 @@ export const Saint_Petersburg = `
 
 /* eslint-disable-next-line camelcase */
 export const South_Korea = `
+16.05 11037
+15.05 11018
+14.05 10991
+13.05 10962
 12.05 10936
 11.05 10909
 10.05 10874
@@ -408,6 +416,10 @@ export const South_Korea = `
 `;
 
 export const USA = `
+16.05 1442824
+15.05 1417774
+14.05 1390406
+13.05 1369376
 12.05 1359319
 11.05 1339819
 10.05 1311923

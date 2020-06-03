@@ -1,4 +1,5 @@
 export const China = `
+02.06 84159
 01.06 84147
 28.05 84106
 27.05 84104
@@ -80,6 +81,7 @@ export const China = `
 `;
 
 export const Italy = `
+02.06 233515
 01.06 233197
 31.05 232997
 30.05 232664
@@ -420,6 +422,7 @@ export const Saint_Petersburg = `
 
 /* eslint-disable-next-line camelcase */
 export const South_Korea = `
+02.06 11590
 01.06 11541
 31.05 11468
 30.05 11441
@@ -513,6 +516,7 @@ export const South_Korea = `
 `;
 
 export const USA = `
+02.06 1831821
 01.06 1811357
 31.05 1770165
 30.05 1746019

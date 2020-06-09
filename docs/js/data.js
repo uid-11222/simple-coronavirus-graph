@@ -1,4 +1,5 @@
 export const China = `
+08.06 84195
 06.06 84186
 02.06 84159
 01.06 84147
@@ -82,6 +83,8 @@ export const China = `
 `;
 
 export const Italy = `
+08.06 235278
+07.06 234998
 06.06 234801
 05.06 234531
 04.06 234013
@@ -442,6 +445,8 @@ export const Saint_Petersburg = `
 
 /* eslint-disable-next-line camelcase */
 export const South_Korea = `
+08.06 11852
+07.06 11814
 06.06 11776
 05.06 11719
 04.06 11668
@@ -540,6 +545,8 @@ export const South_Korea = `
 `;
 
 export const USA = `
+08.06 1960897
+07.06 1943647
 06.06 1920061
 05.06 1897380
 04.06 1872660

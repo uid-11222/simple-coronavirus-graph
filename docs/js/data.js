@@ -1,4 +1,5 @@
 export const China = `
+16.06 84378
 10.06 84209
 08.06 84195
 06.06 84186
@@ -84,6 +85,11 @@ export const China = `
 `;
 
 export const Italy = `
+15.06 237290
+14.06 236989
+13.06 236651
+12.06 236305
+11.06 236142
 10.06 235763
 09.06 235561
 08.06 235278
@@ -167,6 +173,10 @@ export const Italy = `
 `;
 
 export const Moscow = `
+14.06 205905
+13.06 204428
+12.06 202935
+11.06 201221
 10.06 199785
 09.06 198590
 08.06 197018
@@ -272,6 +282,10 @@ export const Moscow = `
 
 /* eslint-disable-next-line camelcase */
 export const Moscow_Oblast = `
+14.06 49353
+13.06 48636
+12.06 47911
+11.06 47181
 10.06 46457
 09.06 45722
 08.06 44983
@@ -371,6 +385,10 @@ export const Moscow_Oblast = `
 
 /* eslint-disable-next-line camelcase */
 export const Saint_Petersburg = `
+14.06 20561
+13.06 20305
+12.06 20043
+11.06 19769
 10.06 19466
 09.06 19153
 08.06 18835
@@ -460,6 +478,11 @@ export const Saint_Petersburg = `
 
 /* eslint-disable-next-line camelcase */
 export const South_Korea = `
+15.06 12155
+14.06 12121
+13.06 12085
+12.06 12051
+11.06 12003
 10.06 11947
 09.06 11902
 08.06 11852
@@ -562,6 +585,11 @@ export const South_Korea = `
 `;
 
 export const USA = `
+15.06 2114026
+14.06 2094058
+13.06 2074526
+12.06 2048986
+11.06 2023590
 10.06 2000464
 09.06 1973230
 08.06 1961428

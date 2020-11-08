@@ -6,7 +6,7 @@
 
 ## Install
 
-You need `node@13` on OS.
+You need `node@14` or higher on OS.
 
 ```sh
 git clone https://github.com/uid11/simple-coronavirus-graph.git

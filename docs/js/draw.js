@@ -3,6 +3,7 @@ import {
     getCtx,
     getDateString,
     getHeightLabelStep,
+    MS_IN_DAY,
     parseDataText,
 } from './utils.js';
 
@@ -19,7 +20,6 @@ export default ({
     labelFontSize = 14,
     labelMarginX = 80,
     labelDistance = 4,
-    msInDay = 24 * 3600 * 1000,
     name,
     rowWidth = 30,
     rowWidthPadding = 22,
@@ -27,15 +27,15 @@ export default ({
     topGraphPadding = 30,
     totalHeight = 900,
 } = {}) => {
-    const data = parseDataText(dataText);
+    const [dates, values] = parseDataText(dataText);
 
-    const startDate = data[0].date;
-    const getDaysFromStart = date => (date - startDate) / msInDay;
-    const rows = 1 + getDaysFromStart(data[data.length - 1].date);
+    const startDate = dates[0];
+    const getDaysFromStart = date => (date - startDate) / MS_IN_DAY;
+    const rows = 1 + getDaysFromStart(dates[dates.length - 1]);
     const totalWidth = rows * rowWidth;
     const rowHalf = Math.round((rowWidth - rowWidthPadding) / 2);
 
-    const maxValue = Math.max(...data.map(item => item.value));
+    const maxValue = Math.max(...values);
     const heightLabelsStep = getHeightLabelStep(maxValue);
     const heightLabelsCount = 1 + Math.floor(maxValue / heightLabelsStep);
     const heightScale = (totalHeight - topGraphPadding) / maxValue;
@@ -77,7 +77,8 @@ export default ({
     ctx.beginPath();
     ctx.font = `${labelFontSize}px mono`;
 
-    data.forEach(({ date, value }) => {
+    dates.forEach((date, index) => {
+        const value = values[index];
         const days = getDaysFromStart(date);
         const height = Math.round(value * heightScale);
         const left = days * rowWidth;
@@ -100,7 +101,7 @@ export default ({
     for (let i = 0; i < rows; i += 1) {
         if (isLabeledIndex(i, rows, labelDistance)) {
             const left = i * rowWidth;
-            const date = new Date(data[0].date.valueOf() + i * msInDay);
+            const date = new Date(dates[0].valueOf() + i * MS_IN_DAY);
 
             ctx.fillText(getDateString(date), left, totalHeight + labelFontSize);
             ctx.moveTo(left, 0);

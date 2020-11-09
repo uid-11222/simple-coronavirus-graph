@@ -107,6 +107,9 @@ export default class App {
     removeGraph(index) {
         if (this.graphsData.length === 1) return;
 
+        /* eslint-disable-next-line no-alert, no-restricted-globals */
+        if (!confirm('Are you sure you want to delete this graph?')) return;
+
         const graph = this.graphs[index];
 
         this.graphsData.splice(index, 1);

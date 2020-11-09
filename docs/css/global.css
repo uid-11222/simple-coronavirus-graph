@@ -1,0 +1,55 @@
+.countriesList {
+    list-style: none;
+    margin-block: 0;
+    padding: 4px;
+}
+
+.country {
+    margin: 0 0 8px;
+
+    width: 100%;
+    position: relative;
+}
+
+.graphContainer {
+    overflow-x: scroll;
+}
+
+.countriesInput,
+.down,
+.up,
+.remove,
+.add {
+    position: absolute;
+
+    opacity: 0.4;
+
+    top: 15px;
+}
+
+.down,
+.up,
+.remove,
+.add {
+    width: 35px;
+}
+
+.countriesInput {
+    right: 350px;
+}
+
+.down {
+    right: 300px;
+}
+
+.up {
+    right: 250px;
+}
+
+.remove {
+    right: 200px;
+}
+
+.add {
+    right: 150px;
+}

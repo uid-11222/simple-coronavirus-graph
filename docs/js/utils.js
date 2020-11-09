@@ -1,20 +1,28 @@
+export const MS_IN_DAY = 24 * 3600 * 1000;
+
+const FIRST_DATE = new Date(2020, 0, 22);
+
+export const DATES = [];
+
+let currentDate = FIRST_DATE;
+const LAST_DATE_IN_MS = Date.now() + MS_IN_DAY;
+
+while (currentDate < LAST_DATE_IN_MS) {
+    DATES.push(currentDate);
+
+    currentDate = new Date(currentDate.valueOf() + MS_IN_DAY);
+}
+
+export const COUNTRIES_LIST_ID = 'countriesList';
+
+export const DEFAULT_COUNTRY_NAME = 'US';
+
 export const isLabeledIndex = (index, rows, labelDistance) => {
     if (index < rows - 3) return index % labelDistance === 0;
 
     if (index === rows - 3 && index % labelDistance > 2) return true;
 
     return index === rows - 1;
-};
-
-export const getCtx = (width, height) => {
-    const graph = document.createElement('canvas');
-
-    document.body.append(graph);
-
-    graph.width = width;
-    graph.height = height;
-
-    return graph.getContext('2d');
 };
 
 export const getDateString = date => {
@@ -26,10 +34,20 @@ export const getDateString = date => {
 
 const TEMPORARY_DOM_ELEMENT = document.createElement('DIV');
 
+const templatesCache = {};
+
 export const getDomElement = template => {
+    if (template in templatesCache) {
+        return templatesCache[template].cloneNode(true);
+    }
+
     TEMPORARY_DOM_ELEMENT.innerHTML = template.trim();
 
-    return TEMPORARY_DOM_ELEMENT.firstChild;
+    const element = TEMPORARY_DOM_ELEMENT.firstChild;
+
+    templatesCache[template] = element;
+
+    return element;
 };
 
 export const getHeightLabelStep = maxValue => {
@@ -44,12 +62,6 @@ export const getHeightLabelStep = maxValue => {
 
 export const GITHUB_API_URL =
     'https://api.github.com/repos/CSSEGISandData/COVID-19/contents/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv';
-
-export const COUNTRIES_LIST_ID = 'countriesList';
-
-export const DEFAULT_COUNTRY_NAME = 'US';
-
-export const MS_IN_DAY = 24 * 3600 * 1000;
 
 export const parseCountriesData = text => {
     const countriesData = {};
@@ -75,30 +87,6 @@ export const parseCountriesData = text => {
 
     return countriesData;
 };
-
-const YEAR = 2020;
-
-export const parseDataText = dataText =>
-    dataText
-        .trim()
-        .split('\n')
-        .map(line => {
-            const [rawDate, value] = line.split(/\s+/g);
-            const [day, month] = rawDate.split(/\./g);
-            const date = new Date(YEAR, parseInt(month, 10) - 1, day);
-
-            return { date, value: parseInt(value, 10) };
-        })
-        .sort((a, b) => (a.date > b.date ? 1 : -1))
-        .reduce(
-            (acc, { date, value }) => {
-                acc[0].push(date);
-                acc[1].push(value);
-
-                return acc;
-            },
-            [[], []],
-        );
 
 export const showNoDataForCountryError = countryName => {
     /* eslint-disable-next-line no-console */

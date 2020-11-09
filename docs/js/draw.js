@@ -1,16 +1,9 @@
-import {
-    isLabeledIndex,
-    getCtx,
-    getDateString,
-    getHeightLabelStep,
-    MS_IN_DAY,
-    parseDataText,
-} from './utils.js';
+import { isLabeledIndex, DATES, getDateString, getHeightLabelStep, MS_IN_DAY } from './utils.js';
 
 export default ({
     barColor = 'rgba(250, 0, 0, 0.3)',
     bgColor = 'white',
-    dataText,
+    domElement,
     graphLineWidth = 2,
     gridColor = '#999',
     gridLineWidth = 1,
@@ -25,13 +18,12 @@ export default ({
     rowWidthPadding = 22,
     textColor = '#222',
     topGraphPadding = 30,
-    totalHeight = 900,
+    totalHeight = 800,
+    values,
 } = {}) => {
-    const [dates, values] = parseDataText(dataText);
-
-    const startDate = dates[0];
+    const startDate = DATES[0];
     const getDaysFromStart = date => (date - startDate) / MS_IN_DAY;
-    const rows = 1 + getDaysFromStart(dates[dates.length - 1]);
+    const rows = 1 + getDaysFromStart(DATES[values.length - 1]);
     const totalWidth = rows * rowWidth;
     const rowHalf = Math.round((rowWidth - rowWidthPadding) / 2);
 
@@ -41,7 +33,14 @@ export default ({
     const heightScale = (totalHeight - topGraphPadding) / maxValue;
     const labelMarginY = labelFontSize * 2;
 
-    const ctx = getCtx(totalWidth + labelMarginX, totalHeight + labelMarginY);
+    /* eslint-disable-next-line no-param-reassign */
+    domElement.width = totalWidth + labelMarginX;
+    /* eslint-disable-next-line no-param-reassign */
+    domElement.height = totalHeight + labelMarginY;
+
+    const ctx = domElement.getContext('2d');
+
+    ctx.clearRect(0, 0, domElement.width, domElement.height);
 
     /**
      * Background.
@@ -77,8 +76,8 @@ export default ({
     ctx.beginPath();
     ctx.font = `${labelFontSize}px mono`;
 
-    dates.forEach((date, index) => {
-        const value = values[index];
+    values.forEach((value, index) => {
+        const date = DATES[index];
         const days = getDaysFromStart(date);
         const height = Math.round(value * heightScale);
         const left = days * rowWidth;
@@ -101,7 +100,7 @@ export default ({
     for (let i = 0; i < rows; i += 1) {
         if (isLabeledIndex(i, rows, labelDistance)) {
             const left = i * rowWidth;
-            const date = new Date(dates[0].valueOf() + i * MS_IN_DAY);
+            const date = new Date(DATES[0].valueOf() + i * MS_IN_DAY);
 
             ctx.fillText(getDateString(date), left, totalHeight + labelFontSize);
             ctx.moveTo(left, 0);

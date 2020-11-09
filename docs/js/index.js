@@ -1,11 +1,5 @@
 import App from './App.js';
-import * as data from './data.js';
-import draw from './draw.js';
 import { DEFAULT_COUNTRY_NAME, GITHUB_API_URL, parseCountriesData } from './utils.js';
-
-Object.entries(data).forEach(([name, dataText]) =>
-    draw({ dataText, name: name.replace(/_/g, ' ') }),
-);
 
 const main = async () => {
     const graphsData = JSON.parse(localStorage.graphsDataText || 'null') || [
@@ -34,8 +28,6 @@ const main = async () => {
     const newCountriesData = parseCountriesData(text);
 
     app.setCountriesData(newCountriesData);
-
-    console.log(newCountriesData);
 };
 
 main();

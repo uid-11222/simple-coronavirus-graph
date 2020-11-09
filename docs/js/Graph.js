@@ -1,3 +1,4 @@
+import draw from './draw.js';
 import { COUNTRIES_LIST_ID, getDomElement, showNoDataForCountryError } from './utils.js';
 
 export default class Graph {
@@ -5,13 +6,16 @@ export default class Graph {
 
     domElement = getDomElement(`
         <li class="country">
-            <input class="countriesInput" list="${COUNTRIES_LIST_ID}">
+            <input class="countriesInput" list="${COUNTRIES_LIST_ID}" title="Choose country">
             <button class="down" title="Move this graph down">▼</button>
             <button class="up" title="Move this graph up">▲</button>
             <button class="remove" title="Remove this graph">-</button>
             <button class="add" title="Add a new graph after this">+</button>
+            <div class="graphContainer"><canvas class="graph"></canvas></div>
         </li>
     `);
+
+    graphElement = this.domElement.querySelector('.graph');
 
     constructor(data, parent) {
         this.data = data;
@@ -60,7 +64,11 @@ export default class Graph {
     }
 
     rerender() {
-        this.domElement.append(document.createTextNode(this.data.name));
+        draw({
+            domElement: this.graphElement,
+            name: this.data.name,
+            values: this.countryData,
+        });
     }
 
     setCountryData(countryData) {

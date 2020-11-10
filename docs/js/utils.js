@@ -17,6 +17,10 @@ export const COUNTRIES_LIST_ID = 'countriesList';
 
 export const DEFAULT_COUNTRY_NAME = 'US';
 
+export const DEFAULT_COUNTRIES_DATA_TEXT = `
+,${DEFAULT_COUNTRY_NAME},0,0
+`;
+
 export const isLabeledIndex = (index, rows, labelDistance) => {
     if (index < rows - 3) return index % labelDistance === 0;
 
@@ -31,6 +35,8 @@ export const getDateString = date => {
 
     return `${day}.${month}`;
 };
+
+export const getDefaultGraphData = () => ({ name: DEFAULT_COUNTRY_NAME, scroll: 0 });
 
 const TEMPORARY_DOM_ELEMENT = document.createElement('DIV');
 
@@ -91,4 +97,20 @@ export const parseCountriesData = text => {
 export const showNoDataForCountryError = countryName => {
     /* eslint-disable-next-line no-console */
     console.error(`No data for country ${countryName}`);
+};
+
+export const throttle = (fn, delayInMs) => {
+    let isPlanned = false;
+    const wrappedFn = () => {
+        isPlanned = false;
+        fn();
+    };
+
+    return () => {
+        if (isPlanned) return;
+
+        isPlanned = true;
+
+        setTimeout(wrappedFn, delayInMs);
+    };
 };

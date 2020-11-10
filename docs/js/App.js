@@ -2,6 +2,7 @@ import Graph from './Graph.js';
 import {
     DEFAULT_COUNTRY_NAME,
     COUNTRIES_LIST_ID,
+    getDefaultGraphData,
     getDomElement,
     showNoDataForCountryError,
 } from './utils.js';
@@ -9,7 +10,7 @@ import {
 export default class App {
     graphs = [];
 
-    domElement = getDomElement('<ul class="countriesList"></ul>');
+    rootElement = getDomElement('<ul class="countriesList"></ul>');
 
     datalistElement = getDomElement(`<datalist id="${COUNTRIES_LIST_ID}">`);
 
@@ -33,7 +34,7 @@ export default class App {
 
                 graph.setCountryData(this.countriesData[graphData.name]);
 
-                this.domElement.append(graph.domElement);
+                this.rootElement.append(graph.rootElement);
             } else {
                 showNoDataForCountryError(graphData.name);
             }
@@ -70,7 +71,7 @@ export default class App {
 
         [this.graphs[index - 1], this.graphs[index]] = [this.graphs[index], this.graphs[index - 1]];
 
-        this.domElement.childNodes[index - 1].before(this.domElement.childNodes[index]);
+        this.rootElement.childNodes[index - 1].before(this.rootElement.childNodes[index]);
     }
 
     downGraph(index) {
@@ -83,7 +84,7 @@ export default class App {
 
         [this.graphs[index + 1], this.graphs[index]] = [this.graphs[index], this.graphs[index + 1]];
 
-        this.domElement.childNodes[index + 1].after(this.domElement.childNodes[index]);
+        this.rootElement.childNodes[index + 1].after(this.rootElement.childNodes[index]);
     }
 
     addGraph(index) {
@@ -93,7 +94,7 @@ export default class App {
             return;
         }
 
-        const graphData = { name: DEFAULT_COUNTRY_NAME };
+        const graphData = getDefaultGraphData();
         const graph = new Graph(graphData, this);
 
         this.graphsData.splice(index + 1, 0, graphData);
@@ -101,7 +102,7 @@ export default class App {
 
         graph.setCountryData(this.countriesData[graphData.name]);
 
-        this.domElement.childNodes[index].after(graph.domElement);
+        this.rootElement.childNodes[index].after(graph.rootElement);
     }
 
     removeGraph(index) {
@@ -115,8 +116,16 @@ export default class App {
         this.graphsData.splice(index, 1);
         this.graphs.splice(index, 1);
 
-        graph.parent = null;
-        graph.domElement.remove();
-        graph.domElement = null;
+        graph.rootElement.remove();
+
+        for (const key of Object.keys(graph)) {
+            graph[key] = undefined;
+        }
+    }
+
+    renderGraphsScrolls() {
+        for (const graph of this.graphs) {
+            graph.renderScroll();
+        }
     }
 }

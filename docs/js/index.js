@@ -1,21 +1,26 @@
 import App from './App.js';
-import { DEFAULT_COUNTRY_NAME, GITHUB_API_URL, parseCountriesData } from './utils.js';
+import {
+    DEFAULT_COUNTRIES_DATA_TEXT,
+    getDefaultGraphData,
+    GITHUB_API_URL,
+    parseCountriesData,
+    throttle,
+} from './utils.js';
 
 const main = async () => {
-    const graphsData = JSON.parse(localStorage.graphsDataText || 'null') || [
-        { name: DEFAULT_COUNTRY_NAME },
-    ];
-    const countriesData = parseCountriesData(localStorage.countriesDataText || '');
+    const graphsData = JSON.parse(localStorage.graphsDataText || 'null') || [getDefaultGraphData()];
+    const countriesData = parseCountriesData(
+        localStorage.countriesDataText || DEFAULT_COUNTRIES_DATA_TEXT,
+    );
 
     const app = new App(graphsData, countriesData);
 
-    app.onChange = () => {
-        setTimeout(() => {
-            localStorage.graphsDataText = JSON.stringify(app.graphsData);
-        }, 8);
-    };
+    app.onChange = throttle(() => {
+        localStorage.graphsDataText = JSON.stringify(app.graphsData);
+    }, 64);
 
-    document.body.append(app.domElement);
+    document.body.append(app.rootElement);
+    app.renderGraphsScrolls();
 
     const response = await fetch(GITHUB_API_URL);
 

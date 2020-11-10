@@ -1,10 +1,10 @@
 import draw from './draw.js';
-import { COUNTRIES_LIST_ID, getDomElement, showNoDataForCountryError } from './utils.js';
+import { COUNTRIES_LIST_ID, getDomElement, showNoDataForCountryError, throttle } from './utils.js';
 
 export default class Graph {
     countryData = [];
 
-    domElement = getDomElement(`
+    rootElement = getDomElement(`
         <li class="country">
             <input class="countriesInput" list="${COUNTRIES_LIST_ID}" title="Choose country">
             <button class="down" title="Move this graph down">▼</button>
@@ -15,7 +15,9 @@ export default class Graph {
         </li>
     `);
 
-    graphElement = this.domElement.querySelector('.graph');
+    graphContainerElement = this.rootElement.querySelector('.graphContainer');
+
+    graphElement = this.rootElement.querySelector('.graph');
 
     constructor(data, parent) {
         this.data = data;
@@ -32,11 +34,19 @@ export default class Graph {
             remove: 'removeGraph',
         });
 
-        const inputElement = this.domElement.querySelector('.countriesInput');
+        const inputElement = this.rootElement.querySelector('.countriesInput');
 
         inputElement.value = this.data.name;
         inputElement.addEventListener('change', ({ target }) =>
             this.onChangeCountryName(target.value),
+        );
+
+        this.graphContainerElement.addEventListener(
+            'scroll',
+            throttle(() => {
+                this.data.scroll = this.graphContainerElement.scrollLeft;
+                this.parent.onChange();
+            }, 64),
         );
 
         this.rerender();
@@ -44,7 +54,7 @@ export default class Graph {
 
     addOnClick(classesToMethods) {
         for (const [className, methodName] of Object.entries(classesToMethods)) {
-            this.domElement.querySelector(`.${className}`).addEventListener('click', () => {
+            this.rootElement.querySelector(`.${className}`).addEventListener('click', () => {
                 const { parent } = this;
 
                 this.parent[methodName](this.parent.graphsData.indexOf(this.data));
@@ -61,6 +71,10 @@ export default class Graph {
         } else {
             showNoDataForCountryError(countryName);
         }
+    }
+
+    renderScroll() {
+        this.graphContainerElement.scrollLeft = this.data.scroll;
     }
 
     rerender() {

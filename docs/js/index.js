@@ -17,6 +17,7 @@ const main = async () => {
 
     app.onChange = throttle(() => {
         localStorage.graphsDataText = JSON.stringify(app.graphsData);
+        app.setDisabledAttributes();
     }, 64);
 
     app.renderTo(document.body);

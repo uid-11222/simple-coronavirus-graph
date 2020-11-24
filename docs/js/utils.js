@@ -53,7 +53,7 @@ export const getDomElement = template => {
 
     templatesCache[template] = element;
 
-    return element;
+    return element.cloneNode(true);
 };
 
 export const getHeightLabelStep = maxValue => {

@@ -47,6 +47,18 @@ export default class App {
         }
     }
 
+    setDisabledAttributes() {
+        const isSingle = this.graphs.length <= 1;
+
+        for (let i = 0; i < this.graphs.length; i += 1) {
+            const graph = this.graphs[i];
+
+            graph.upElement.disabled = isSingle || i === 0;
+            graph.downElement.disabled = isSingle || i === this.graphs.length - 1;
+            graph.removeElement.disabled = isSingle;
+        }
+    }
+
     upGraph(index) {
         if (index === 0) return;
 
@@ -58,6 +70,8 @@ export default class App {
         [this.graphs[index - 1], this.graphs[index]] = [this.graphs[index], this.graphs[index - 1]];
 
         this.rootElement.childNodes[index - 1].before(this.rootElement.childNodes[index]);
+
+        this.graphs[index - 1].renderScroll();
     }
 
     downGraph(index) {
@@ -71,6 +85,8 @@ export default class App {
         [this.graphs[index + 1], this.graphs[index]] = [this.graphs[index], this.graphs[index + 1]];
 
         this.rootElement.childNodes[index + 1].after(this.rootElement.childNodes[index]);
+
+        this.graphs[index + 1].renderScroll();
     }
 
     addGraph(index) {

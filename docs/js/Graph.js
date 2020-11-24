@@ -19,6 +19,14 @@ export default class Graph {
 
     graphElement = this.rootElement.querySelector('.graph');
 
+    downElement = this.rootElement.querySelector('.down');
+
+    upElement = this.rootElement.querySelector('.up');
+
+    removeElement = this.rootElement.querySelector('.remove');
+
+    addElement = this.rootElement.querySelector('.add');
+
     constructor(data, parent) {
         this.data = data;
         this.parent = parent;
@@ -28,10 +36,10 @@ export default class Graph {
 
     initialRender() {
         this.addOnClick({
-            up: 'upGraph',
-            down: 'downGraph',
-            add: 'addGraph',
-            remove: 'removeGraph',
+            upElement: 'upGraph',
+            downElement: 'downGraph',
+            addElement: 'addGraph',
+            removeElement: 'removeGraph',
         });
 
         const inputElement = this.rootElement.querySelector('.countriesInput');
@@ -55,8 +63,8 @@ export default class Graph {
     }
 
     addOnClick(classesToMethods) {
-        for (const [className, methodName] of Object.entries(classesToMethods)) {
-            this.rootElement.querySelector(`.${className}`).addEventListener('click', () => {
+        for (const [elementName, methodName] of Object.entries(classesToMethods)) {
+            this[elementName].addEventListener('click', () => {
                 const { parent } = this;
 
                 this.parent[methodName](this.parent.graphsData.indexOf(this.data));

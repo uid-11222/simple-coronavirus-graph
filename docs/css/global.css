@@ -1,5 +1,6 @@
 .countriesList {
     list-style: none;
+
     margin-block: 0;
     padding: 4px;
 }
@@ -15,7 +16,6 @@
     overflow-x: scroll;
 }
 
-.countriesInput,
 .down,
 .up,
 .remove,
@@ -59,15 +59,17 @@
 }
 
 .countriesInput {
-    background-color: #61ce342e;
+    background-color: #7db0681c;
 
     border: none;
 
-    color: #fb008a;
+    color: #6f6805;
 
     font-size: 16px;
 
     outline: none;
+
+    position: absolute;
 
     right: 355px;
 

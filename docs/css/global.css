@@ -22,20 +22,51 @@
 .add {
     position: absolute;
 
-    opacity: 0.4;
-
-    top: 15px;
+    opacity: 0.5;
 }
 
 .down,
 .up,
 .remove,
 .add {
-    width: 35px;
+    background-color: rgba(0, 0, 0, 0);
+
+    border: none;
+
+    color: green;
+
+    cursor: pointer;
+
+    font-size: 25px;
+
+    overflow: hidden;
+
+    outline: none;
+
+    width: 32px;
+    height: 25px;
+
+    top: 10px;
+}
+
+:is(.down, .up, .remove, .add):hover {
+    color: #18d44a;
 }
 
 .countriesInput {
-    right: 350px;
+    background-color: #61ce344a;
+
+    border: none;
+
+    color: #f50808;
+
+    font-size: 16px;
+
+    outline: none;
+
+    right: 355px;
+
+    top: 17px;
 }
 
 .down {

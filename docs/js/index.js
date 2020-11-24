@@ -19,8 +19,7 @@ const main = async () => {
         localStorage.graphsDataText = JSON.stringify(app.graphsData);
     }, 64);
 
-    document.body.append(app.rootElement);
-    app.renderGraphsScrolls();
+    app.renderTo(document.body);
 
     const response = await fetch(GITHUB_API_URL);
 

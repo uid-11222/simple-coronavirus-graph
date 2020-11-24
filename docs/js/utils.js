@@ -94,11 +94,6 @@ export const parseCountriesData = text => {
     return countriesData;
 };
 
-export const showNoDataForCountryError = countryName => {
-    /* eslint-disable-next-line no-console */
-    console.error(`No data for country ${countryName}`);
-};
-
 export const throttle = (fn, delayInMs) => {
     let isPlanned = false;
     const wrappedFn = () => {

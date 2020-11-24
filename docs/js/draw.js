@@ -9,16 +9,18 @@ export default ({
     gridLineWidth = 1,
     headerColor = 'rgba(0, 0, 100, 0.1)',
     headerFontSize = 120,
+    horizontalLabelFrequency = 32,
     labelBgColor = '#DDD',
     labelFontSize = 14,
-    labelMarginX = 80,
+    labelMarginX = 120,
     labelDistance = 4,
     name,
     rowWidth = 30,
     rowWidthPadding = 22,
     textColor = '#222',
-    topGraphPadding = 30,
+    topGraphPadding = 50,
     totalHeight = 800,
+    translucentTextColor = 'rgba(0, 50, 50, 0.4)',
     values,
 } = {}) => {
     const startDate = DATES[0];
@@ -111,9 +113,31 @@ export default ({
     for (let i = 0; i < heightLabelsCount; i += 1) {
         const height = Math.round(i * heightScale * heightLabelsStep);
 
-        ctx.fillText((heightLabelsStep * i).toLocaleString('en'), totalWidth, totalHeight - height);
+        ctx.fillText(
+            (heightLabelsStep * i).toLocaleString('en'),
+            totalWidth + 2,
+            totalHeight - height - 3,
+        );
         ctx.moveTo(0, totalHeight - height);
         ctx.lineTo(totalWidth, totalHeight - height);
+    }
+
+    ctx.fillStyle = translucentTextColor;
+
+    for (let i = 0; i < rows; i += 1) {
+        if (isLabeledIndex(i, rows, labelDistance) && i % horizontalLabelFrequency === 0) {
+            const left = i * rowWidth;
+
+            for (let j = 0; j < heightLabelsCount; j += 1) {
+                const height = Math.round(j * heightScale * heightLabelsStep);
+
+                ctx.fillText(
+                    (heightLabelsStep * j).toLocaleString('en'),
+                    left + 2,
+                    totalHeight - height - 3,
+                );
+            }
+        }
     }
 
     ctx.stroke();

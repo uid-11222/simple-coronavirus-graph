@@ -1,11 +1,5 @@
 import Graph from './Graph.js';
-import {
-    DEFAULT_COUNTRY_NAME,
-    COUNTRIES_LIST_ID,
-    getDefaultGraphData,
-    getDomElement,
-    showNoDataForCountryError,
-} from './utils.js';
+import { COUNTRIES_LIST_ID, getDefaultGraphData, getDomElement } from './utils.js';
 
 export default class App {
     graphs = [];
@@ -27,17 +21,13 @@ export default class App {
         document.body.append(this.datalistElement);
 
         for (const graphData of this.graphsData) {
-            if (graphData.name in this.countriesData) {
-                const graph = new Graph(graphData, this);
+            const graph = new Graph(graphData, this);
 
-                this.graphs.push(graph);
+            this.graphs.push(graph);
 
-                graph.setCountryData(this.countriesData[graphData.name]);
+            graph.setCountryData(this.countriesData[graphData.name]);
 
-                this.rootElement.append(graph.rootElement);
-            } else {
-                showNoDataForCountryError(graphData.name);
-            }
+            this.rootElement.append(graph.rootElement);
         }
     }
 
@@ -53,11 +43,7 @@ export default class App {
         this.datalistElement.innerHTML = countriesOptions.join('');
 
         for (const graph of this.graphs) {
-            if (graph.data.name in this.countriesData) {
-                graph.setCountryData(this.countriesData[graph.data.name]);
-            } else {
-                showNoDataForCountryError(graph.data.name);
-            }
+            graph.setCountryData(this.countriesData[graph.data.name]);
         }
     }
 
@@ -88,12 +74,6 @@ export default class App {
     }
 
     addGraph(index) {
-        if (!(DEFAULT_COUNTRY_NAME in this.countriesData)) {
-            showNoDataForCountryError(DEFAULT_COUNTRY_NAME);
-
-            return;
-        }
-
         const graphData = getDefaultGraphData();
         const graph = new Graph(graphData, this);
 
@@ -123,7 +103,9 @@ export default class App {
         }
     }
 
-    renderGraphsScrolls() {
+    renderTo(parentDomElement) {
+        parentDomElement.append(this.rootElement);
+
         for (const graph of this.graphs) {
             graph.renderScroll();
         }

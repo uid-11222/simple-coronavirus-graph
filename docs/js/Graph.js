@@ -1,5 +1,5 @@
 import draw from './draw.js';
-import { COUNTRIES_LIST_ID, getDomElement, showNoDataForCountryError, throttle } from './utils.js';
+import { COUNTRIES_LIST_ID, getDomElement, throttle } from './utils.js';
 
 export default class Graph {
     countryData = [];
@@ -9,7 +9,7 @@ export default class Graph {
             <input class="countriesInput" list="${COUNTRIES_LIST_ID}" title="Choose country">
             <button class="down" title="Move this graph down">▼</button>
             <button class="up" title="Move this graph up">▲</button>
-            <button class="remove" title="Remove this graph">-</button>
+            <button class="remove" title="Remove this graph">–</button>
             <button class="add" title="Add a new graph after this">+</button>
             <div class="graphContainer"><canvas class="graph"></canvas></div>
         </li>
@@ -37,9 +37,11 @@ export default class Graph {
         const inputElement = this.rootElement.querySelector('.countriesInput');
 
         inputElement.value = this.data.name;
-        inputElement.addEventListener('change', ({ target }) =>
-            this.onChangeCountryName(target.value),
-        );
+        inputElement.addEventListener('input', ({ target: { value } }) => {
+            if (value in this.parent.countriesData) {
+                this.onChangeCountryName(value);
+            }
+        });
 
         this.graphContainerElement.addEventListener(
             'scroll',
@@ -64,13 +66,11 @@ export default class Graph {
     }
 
     onChangeCountryName(countryName) {
-        if (countryName in this.parent.countriesData) {
-            this.data.name = countryName;
-            this.setCountryData(this.parent.countriesData[countryName]);
-            this.parent.onChange();
-        } else {
-            showNoDataForCountryError(countryName);
-        }
+        if (countryName === this.data.name) return;
+
+        this.data.name = countryName;
+        this.setCountryData(this.parent.countriesData[countryName]);
+        this.parent.onChange();
     }
 
     renderScroll() {
@@ -85,7 +85,7 @@ export default class Graph {
         });
     }
 
-    setCountryData(countryData) {
+    setCountryData(countryData = []) {
         this.countryData = countryData;
 
         this.rerender();

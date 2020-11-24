@@ -20,15 +20,6 @@
 .up,
 .remove,
 .add {
-    position: absolute;
-
-    opacity: 0.7;
-}
-
-.down,
-.up,
-.remove,
-.add {
     background-color: rgba(0, 0, 0, 0);
 
     border: none;
@@ -37,16 +28,18 @@
 
     cursor: pointer;
 
-    font-size: 25px;
+    opacity: 0.7;
 
     overflow: hidden;
 
     outline: none;
 
-    width: 32px;
-    height: 25px;
+    position: absolute;
 
-    top: 10px;
+    left: 8px;
+
+    width: 40px;
+    height: 30px;
 }
 
 :is(.down, .up, .remove, .add):hover {
@@ -71,23 +64,35 @@
 
     position: absolute;
 
-    right: 355px;
+    width: 280px;
 
-    top: 17px;
-}
+    right: 140px;
 
-.down {
-    right: 300px;
-}
-
-.up {
-    right: 250px;
-}
-
-.remove {
-    right: 200px;
+    top: 15px;
 }
 
 .add {
-    right: 150px;
+    top: 5px;
+}
+
+.remove {
+    top: 35px;
+}
+
+.add,
+.remove {
+    font-size: 30px;
+}
+
+.up {
+    top: 70px;
+}
+
+.down {
+    top: 100px;
+}
+
+.up,
+.down {
+    font-size: 25px;
 }

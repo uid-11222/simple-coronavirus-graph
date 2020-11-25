@@ -66,8 +66,11 @@ export default class Graph {
         for (const [elementName, methodName] of Object.entries(classesToMethods)) {
             this[elementName].addEventListener('click', () => {
                 const { parent } = this;
+                const { scrollTop } = document.documentElement;
 
                 this.parent[methodName](this.parent.graphsData.indexOf(this.data));
+                document.documentElement.scrollTop = scrollTop;
+
                 parent.onChange();
             });
         }

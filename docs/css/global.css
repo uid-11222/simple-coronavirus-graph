@@ -1,3 +1,8 @@
+:root {
+    --top-button-margin: 8px;
+    --padding-between-buttons: 30px;
+}
+
 .countriesList {
     list-style: none;
 
@@ -8,12 +13,23 @@
 .country {
     margin: 0 0 8px;
 
-    width: 100%;
     position: relative;
+    width: 100%;
 }
 
 .graphContainer {
     overflow-x: scroll;
+}
+
+.countriesInput,
+.down,
+.up,
+.remove,
+.add {
+    border: none;
+    outline: none;
+
+    position: absolute;
 }
 
 .down,
@@ -21,9 +37,6 @@
 .remove,
 .add {
     background-color: rgba(0, 0, 0, 0);
-
-    border: none;
-
     color: green;
 
     cursor: pointer;
@@ -31,10 +44,6 @@
     opacity: 0.7;
 
     overflow: hidden;
-
-    outline: none;
-
-    position: absolute;
 
     left: 8px;
 
@@ -53,30 +62,22 @@
 
 .countriesInput {
     background-color: #7db0681c;
-
-    border: none;
-
     color: #6f6805;
 
     font-size: 16px;
 
-    outline: none;
-
-    position: absolute;
-
-    width: 280px;
-
+    top: calc(var(--top-button-margin) + 7px);
     right: 140px;
 
-    top: 15px;
+    width: 280px;
 }
 
 .add {
-    top: 5px;
+    top: var(--top-button-margin);
 }
 
 .remove {
-    top: 35px;
+    top: calc(var(--top-button-margin) + var(--padding-between-buttons));
 }
 
 .add,
@@ -85,11 +86,11 @@
 }
 
 .up {
-    top: 70px;
+    top: calc(2 * var(--top-button-margin) + 2 * var(--padding-between-buttons));
 }
 
 .down {
-    top: 100px;
+    top: calc(2 * var(--top-button-margin) + 3 * var(--padding-between-buttons));
 }
 
 .up,

@@ -15,11 +15,9 @@ while (currentDate < LAST_DATE_IN_MS) {
 
 export const COUNTRIES_LIST_ID = 'countriesList';
 
-export const DEFAULT_COUNTRY_NAME = 'US';
+export const WORLD_NAME = 'World';
 
-export const DEFAULT_COUNTRIES_DATA_TEXT = `
-,${DEFAULT_COUNTRY_NAME},0,0
-`;
+export const DEFAULT_COUNTRIES_DATA_TEXT = '\n,US,0,0\n';
 
 export const isLabeledIndex = (index, rows, labelDistance) => {
     if (index < rows - 3) return index % labelDistance === 0;
@@ -36,7 +34,7 @@ export const getDateString = date => {
     return `${day}.${month}`;
 };
 
-export const getDefaultGraphData = () => ({ name: DEFAULT_COUNTRY_NAME, scroll: 0 });
+export const getDefaultGraphData = () => ({ name: WORLD_NAME, scroll: 0 });
 
 const TEMPORARY_DOM_ELEMENT = document.createElement('DIV');
 
@@ -74,21 +72,31 @@ export const parseCountriesData = text => {
 
     text.split('\n')
         .slice(1, -1)
-        .forEach(line => {
+        .forEach(rawLine => {
+            const line = rawLine.replace(/"([^"]*)"/g, (string, value) =>
+                value.replace(/,/g, '|').trim(),
+            );
             const parts = line.split(',');
 
             if (parts.length < 2) return;
 
             const [, rawCountry, , , ...numbers] = parts;
-            const country = rawCountry.replace(/"/g, '').trim();
+            const country = rawCountry.replace(/\|/g, ',');
 
-            if (country in countriesData) {
-                numbers.forEach((number, i) => {
-                    countriesData[country][i] += Number(number);
-                });
-            } else {
-                countriesData[country] = numbers.map(Number);
+            if (!countriesData[WORLD_NAME]) {
+                countriesData[WORLD_NAME] = Array(numbers.length).fill(0);
             }
+
+            if (!countriesData[country]) {
+                countriesData[country] = Array(numbers.length).fill(0);
+            }
+
+            numbers.forEach((strNumber, i) => {
+                const number = Number(strNumber);
+
+                countriesData[country][i] += number;
+                countriesData[WORLD_NAME][i] += number;
+            });
         });
 
     return countriesData;

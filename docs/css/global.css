@@ -51,11 +51,17 @@
     height: 30px;
 }
 
-:is(.down, .up, .remove, .add):hover {
+.down:hover,
+.up:hover,
+.remove:hover,
+.add:hover {
     color: #18d44a;
 }
 
-:is(.down, .up, .remove, .add):disabled {
+.down:disabled,
+.up:disabled,
+.remove:disabled,
+.add:disabled {
     cursor: not-allowed;
     color: grey;
 }

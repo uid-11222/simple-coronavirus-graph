@@ -124,7 +124,7 @@ export default ({
 
     ctx.fillStyle = translucentTextColor;
 
-    for (let i = 0; i < rows; i += 1) {
+    for (let i = 0; i < rows - 2 * labelDistance; i += 1) {
         if (isLabeledIndex(i, rows, labelDistance) && i % horizontalLabelFrequency === 0) {
             const left = i * rowWidth;
 

@@ -1,5 +1,8 @@
 # Simple coronavirus graph
 
+[![Contributor Covenant][contributor-covenant-image]](CODE_OF_CONDUCT.md)
+[![code style: prettier][prettier-image]](https://github.com/prettier/prettier)
+[![Conventional Commits][conventional-commits-image]](https://conventionalcommits.org)
 [![License MIT][license-image]](LICENSE)
 
 [https://uid11.github.io/simple-coronavirus-graph/](https://uid11.github.io/simple-coronavirus-graph/)
@@ -30,4 +33,7 @@ This is a training project.
 
 [MIT](LICENSE)
 
-[license-image]: https://img.shields.io/badge/license-MIT-blue.svg?longCache=true&style=flat-square 'The MIT License'
+[contributor-covenant-image]: https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg 'Contributor Covenant'
+[conventional-commits-image]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg 'Conventional Commits'
+[license-image]: https://img.shields.io/badge/license-MIT-blue.svg 'The MIT License'
+[prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg 'Prettier code style'

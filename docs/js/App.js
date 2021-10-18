@@ -1,6 +1,8 @@
 import Graph from './Graph.js';
 import { COUNTRIES_LIST_ID, getDefaultGraphData, getDomElement } from './utils.js';
 
+const noop = () => {};
+
 export default class App {
     graphs = [];
 
@@ -8,7 +10,7 @@ export default class App {
 
     datalistElement = getDomElement(`<datalist id="${COUNTRIES_LIST_ID}">`);
 
-    onChange = () => {};
+    onChange = noop;
 
     constructor(graphsData, countriesData) {
         this.graphsData = graphsData;

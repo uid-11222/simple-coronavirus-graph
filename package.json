@@ -21,7 +21,7 @@
     "author": "uid11",
     "license": "MIT",
     "dependencies": {
-        "express": "4.17.2"
+        "express": "4.17.3"
     },
     "engines": {
         "node": ">=14"

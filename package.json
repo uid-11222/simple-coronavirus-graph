@@ -8,7 +8,7 @@
     "homepage": "https://github.com/uid11/simple-coronavirus-graph#readme",
     "main": "src/index.js",
     "scripts": {
-        "lint": "eslint docs src",
+        "lint": "eslint --max-warnings=0 --report-unused-disable-directives docs src",
         "start": "node src/server.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -28,7 +28,7 @@
     },
     "devDependencies": {
         "@typescript-eslint/parser": "5.20.0",
-        "eslint": "8.13.0",
+        "eslint": "8.14.0",
         "eslint-config-airbnb-base": "15.0.0",
         "eslint-config-prettier": "8.5.0",
         "eslint-plugin-import": "2.26.0",

@@ -27,8 +27,8 @@
         "node": ">=14"
     },
     "devDependencies": {
-        "@typescript-eslint/parser": "6.6.0",
-        "eslint": "8.48.0",
+        "@typescript-eslint/parser": "6.7.2",
+        "eslint": "8.49.0",
         "eslint-config-airbnb-base": "15.0.0",
         "eslint-config-prettier": "9.0.0",
         "eslint-plugin-import": "2.28.1",
